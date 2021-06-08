@@ -1,0 +1,40 @@
+{
+    "name": "gvera/http",
+    "description": "gv http",
+    "license": "MIT",
+    "keywords": ["gv", "http"],
+    "authors": [
+        {
+            "name": "Guido Vera",
+            "email": "vera.a.guido@gmail.com"
+        }
+    ],
+    "config": {
+        "platform" :{
+            "php": "8.0.0"
+        }
+    },
+    "require": {
+        "gvera/exceptions": "^1.0",
+	    "gvera/config": "^1.0",
+	    "gvera/validations": "^1.0",
+        "gvera/file-manager": "^1.0",
+        "gvera/response-types": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit":          "^9.0",
+        "pcov/clobber": "^2.0"
+    },
+    "scripts": {
+    },
+    "autoload": {
+      "psr-4": {
+        "Gvera\\": [
+            "src/"
+        ],
+          "Tests\\": [
+              "tests/"
+          ]
+      }
+    }
+}
