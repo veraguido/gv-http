@@ -94,4 +94,22 @@ class HttpRequestTest extends \PHPUnit\Framework\TestCase
 
         $this->assertTrue($firstRequest->getIP() === '1.0.0.0');
     }
+
+    /**
+     * @test
+     */
+    public function testAuthorizationHeaders()
+    {
+        $fileManager = new FileManager(new Config());
+        $validator = new HttpRequestValidator(new ValidationService());
+        $firstRequest = new HttpRequest($fileManager, $validator);
+        $this->assertNull($firstRequest->getBearerToken());
+        $_SERVER['HTTP_AUTHORIZATION'] = 'Authorization: Bearer asdasdasd';
+
+        $this->assertTrue($firstRequest->getBearerToken() === 'asdasdasd');
+
+        $secondRequest = new HttpRequest($fileManager, $validator);
+        $_SERVER['Authorization'] = 'Authorization: Bearer qweqwe';
+        $this->assertTrue($secondRequest->getBearerToken() === 'qweqwe');
+    }
 }
