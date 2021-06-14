@@ -58,6 +58,10 @@ class HttpRequest
      */
     public function get($name)
     {
+        if (!isset($_GET[$name])) {
+            return null;
+        }
+
         return filter_var($_GET[$name], FILTER_SANITIZE_STRING);
     }
 
@@ -67,6 +71,9 @@ class HttpRequest
      */
     public function post($name = null)
     {
+        if (!isset($_POST[$name])) {
+            return null;
+        }
         return filter_var($_POST[$name], FILTER_SANITIZE_STRING);
     }
 
